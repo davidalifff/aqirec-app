@@ -8,8 +8,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
+  activePage: any;
 
   constructor(private authService: AuthService, private router: Router) { }
+
+  onMenuClick(event: any, path: any) {
+    var before = window.location.pathname.split("/")[1];
+    this.activePage = path;
+
+    if (event !== "") {
+      event.preventDefault();
+    }
+  }
 
   logout() {
     this.authService.logout().subscribe(() => {
